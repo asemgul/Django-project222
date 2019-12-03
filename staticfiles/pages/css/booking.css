@@ -1,0 +1,133 @@
+body{
+background-attachment: fixed;
+background: url('../images/fg.jpg');
+}
+.search-box-wrapper {
+    display: inline-flex;
+    font-size: 20px;
+}
+
+.search-box-input {
+    font-size: inherit;
+    border: 0.2em solid #B22222;
+    border-radius: 0.5em 0 0 0.5em;
+    padding: 0.2em 0.5em;
+    outline: 0;
+}
+
+.search-box-input:hover,
+.search-box-input:focus {
+    border-color: #B22222;
+}
+
+.search-box-button {
+    font-size: inherit;
+    border: 0.2em solid #B22222;
+    border-radius: 0 0.5em 0.5em 0;
+    background-color: #B22222;
+    border-right: 0;
+    padding: 0 0.75em;
+    color: white;
+    font-weight: bold;
+    outline: 0;
+    cursor: pointer;
+}
+
+.search-box-button:hover,
+.search-box-button:focus {
+    border-color: #B22222;
+    background-color: #B22222;
+}
+
+.booking-form-box{
+	max-width: 350px;
+	border: 1px solid #FFF5EE;
+	margin: 10% auto 0;
+}
+.radio-btn{
+	margin: 0 20px;
+}
+.radio-btn .btn {
+	margin: 20px 10px 20px 0;
+	box-shadow: none;
+}
+.radio-btn .btn::after{
+	content: '';
+	height: 15px;
+	width: 15px;
+	top: -2px;
+	left: -1px;
+	background-color: #FFF5EE;
+	position: relative;
+	display: inline-block;
+	border: 3px solid #FFF5EE;
+	visibility: visible;
+	border-radius: 50%;
+}
+.radio-btn .btn:checked::after{
+	content: '';
+	background-color: #1C1C1C;
+	transition: 0.5s;
+}
+.radio-btn span{
+	color: #FFF5EE;
+	margin-right:5px;
+	font-size: 12px; 
+}
+.booking-form{
+	padding: 0 20px 20px;
+}
+
+.booking-form label{
+	margin-bottom: 5px;
+	margin-top: 10px;
+	font-size: 12px;
+	color: #FFF5EE;
+}
+input::placeholder{
+	color: #FFF5EE !important;
+}
+.input-grp{
+	width: 151px;
+	display: inline-block;
+}
+.form-control{
+	font-size: 12px !important;
+	border-radius: 0 !important;
+	color: #FFF5EE !important;
+	background: transparent !important;
+	box-shadow: none !important;
+}
+.select-date::-webkit-inner-spin-button,
+.select-date::-webkit-outer-spin-button{
+	-webkit-appearance:none;
+	margin: 0;
+}
+.select-date::-webkit-calendar-picker-indicator{
+	background: transparent !important;
+}
+.custom-select{
+	color: #FFE4E1 !important;
+	font-size:12px !important;
+	border: 1px solid #FFE4E1 !important;
+	box-shadow:none !important;
+	border-radius: 0 !important;
+	background: transparent !important;
+}
+.custom-select option{
+	color: ;
+}
+.flight{
+	width: 100%;
+	padding:9px 0!important;
+	font-size: 12px !important;
+	border: 1px solid #FFE4E1 !important;
+	background: transparent !important;
+	box-shadow: none !important;
+	border-radius: 0 !important;
+}
+.flight:hover{
+	background: #FFE4E1 !important;
+	color: #FFE4E1 !important;
+	transition: 0.5s;
+}

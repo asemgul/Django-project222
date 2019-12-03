@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=d, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Search</title>
+</head>
+<body>
+    {% if res %}
+      {% for flight in res %}
+      <p>--------------------------------------------------------------------------</p>
+            <H4>From: {{flight.from_city.city_name}}</H4>
+            <H4>To: {{flight.to_city.city_name}}</H4>
+            <H4>Start: {{flight.fligth_start_time}}</H4>
+            <H4>End: {{flight.flight_end_time}}</H4>
+            <H4>Duration: {{flight.flight_duration}} minutes</H4>
+            <H4>Econom: {{flight.flight_price_econom}} $</H4>
+            <H4>Business: {{flight.flight_price_business}} $</H4>
+            <a href="{% url 'home:show_flights' %}" class="button button-small">Submit</a> </div>
+            <!--   сюда кнопка, потом переадресация, а то ататай   -->
+      <p>--------------------------------------------------------------------------</p>
+      {% endfor %}
+    {% else %}
+    <h1> There is no result for your search request </h1>
+    {% endif %}
+</body>
+</html>

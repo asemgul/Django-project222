@@ -1,0 +1,62 @@
+
+import sqlite3 #, os, sys
+
+
+#database Flights
+con2 = sqlite3.connect("Routes.db")
+con3 = sqlite3.connect("Planes.db")
+
+
+#ROUTES TABLE
+cur2 = con2.cursor()
+cur2.execute("CREATE TABLE IF NOT EXISTS Routes(airline TEXT, airlineid INTEGER, sourceairport TEXT,"+\
+            "sourceairportid INTEGER, destinationairport TEXT, destinationairportid INTEGER,codeshare TEXT, stops INTEGER, equipment TEXT)")
+con2.commit()
+
+#PLANES TABLE
+cur3 = con3.cursor()
+cur3.execute("CREATE TABLE IF NOT EXISTS Planes(planename TEXT, iata TEXT, icao TEXT)")
+con3.commit()
+
+#routes db
+try:
+    routes = open("routes.dat", 'r')
+    data2 = routes.read()
+    data2 = data2.split()
+
+    for i in range(0, len(data2)):
+        airline = data1[i]
+        a_id = data1[i+1]
+        sa = data1[i+2]
+        sa_id = data1[i+3]
+        da = data1[i+4]
+        da_id = data1[i+5]
+        codes = data1[i+6]
+        stops = data1[i+7]
+        eqp = data1[i+8]
+        cur2.execute('INSERT INTO Airlines (airline, airlineid, sourceairport, sourceairportid, destinationairport,'+\
+                     'destinationairportid, codeshare, stops, equipment)'+\
+                     'VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
+                      (airline, a_id, sa, sa_id, da, da_id , codes, stops, eqp))
+
+    con2.commit()
+except:
+    print ("File is not found")
+
+
+#planes db
+try:
+    planes = open("planes.dat", 'r')
+    data3 = planes.read()
+    data3 = data3.split()
+
+    for i in range(0, len(data3)):
+        plane = data1[i]
+        iata = data1[i+1]
+        icao = data1[i+2]
+        cur3.execute('INSERT INTO Airlines (planename, iata, icao) VALUES (?, ?, ?)',
+                      (plane, iata, icao))
+
+    con3.commit()
+except:
+    print ("File is not found")

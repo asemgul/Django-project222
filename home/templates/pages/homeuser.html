@@ -1,0 +1,129 @@
+
+
+{% block content %}
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title></title>
+
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <link rel="stylesheet" href="search-box.css">
+  <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+    crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    {% load staticfiles %}
+  <link href="{% static 'pages/css/default.css' %}" rel="stylesheet" type="text/css" media="all" />
+  <link href="{% static 'pages/css/fonts.css' %}"  rel="stylesheet" type="text/css" media="all" />
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="{% url 'home:home' %}">AirPort</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home:home'c%}">Главная <span class="sr-only">(current)</span></a>
+      </li>
+
+          <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home:onas' %}">О нас</a>
+
+        <li class="nav-item active">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button class="search-box-button">❓</button>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="#">Какие есть рейсы?</a>
+        <a class="dropdown-item" href="{% url 'home:vylety' %}">Как узнать прилет?</a>
+        <a class="dropdown-item" href="{% url 'home:prilet' %}">Когда отлет самолетов?</a>
+        <a class="dropdown-item" href="{% url 'home:contact' %}">Как свзяаться с в аэропортом?</a>
+        <a class="dropdown-item" href="https://en.wikipedia.org/wiki/Almaty">Где находиться Алматы?</a>
+        <a class="dropdown-item" href="{% url 'home:forpassengers' %}">Какие есть Алматинские авиа-туры?</a>
+        <a class="dropdown-item" href="{% url 'home:info' %}">Нужна ли регистрация для просмотра рейсов?</a>
+        <a class="dropdown-item" href="{% url 'home:info' %}">Как посмотреть мои полеты?</a>
+        <a class="dropdown-item" href="{% url 'home:info' %}">Как сохранить выбранный рейс?</a>
+        <a class="dropdown-item" href="{% url 'home:info' %}">Что еще я могу узнать?</a>
+        </div>
+        </li>
+
+      <li class="nav-item active">
+        <a class="nav-link disabled" href="{% url 'home:forpassengers' %}" tabindex="-1" aria-disabled="true">Для пассажиров</a>
+        <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home:booking' %}">Покупка Билетов</a>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home:contact' %}">Контакты</a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        MEНЮ
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+         <a class="dropdown-item" href="{% url 'home:prilet' %}">ПРИЛЕТ</a>
+          <a class="dropdown-item" href="{% url 'home:vylety' %}">ВЫЛЕТ</a>
+          <a class="dropdown-item" href="{% url 'home:info' %}">Info-центр</a>
+          <a class="dropdown-item" href="{% url 'home:register' %}">Мои полеты</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">РАСПИСАНИЕ</a>
+        </div>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0" action="{% url 'home:search' %}" method='POST'>
+      {% csrf_token %}
+      <input class="form-control mr-sm-2" type="search" name="search_text" placeholder="Search" aria-label="Search">
+      <input class="search-box-button" type="submit">&#128269;</input>
+    </form>
+  </div>
+</nav>
+
+      {% for flight in flights %}
+          <article class="media content-section">
+              <div class="media-body">
+                <div class="article-metadata">
+                  <a class="mr-2" href="#">{{ flight.from_c }}</a>
+                  <a class="mr-2" href="#">{{ flight.to_c }}</a>
+                </div>
+                <h2><a class="article-title" href="{% url 'home:flight-detail' flight.pk %}">{{ flight.date }}</a></h2>
+                <p class="article-content">{{ flight.cost }}</p>
+              </div>
+            </article>
+
+
+<div id="wrapper1">
+  <div id="welcome" class="container">
+    <div class="title">
+      <h2>Аэропорт Алматы</h2>
+      <span class="byline">Немного информаций о нас</span> </div>
+    <div class="content">
+      <p>Международный аэропорт Алматы (каз. Алматы әуежайы; KASE: ARAL (IATA: ALA, ICAO: UAAA)) — аэропорт, первый по объёму пассажиропотока в Казахстане. Расположен в северной части города, в 15 километрах от центра Алматы. </p>
+      <a href="{% url 'home:info' %}" class="button">Читать больше</a> </div>
+  </div>
+
+<div id="wrapper4">
+  <div id="footer" class="container">
+    <div>
+      <header class="title">
+        <h2>Информация</h2>
+        <span class="byline">Больше информаций о нас здесь:)</span> </header>
+      <ul class="contact">
+        <li><a href="https://twitter.com/airport_almaty" class="icon icon-twitter"><span>Twitter</span></a></li>
+        <li><a href="https://www.facebook.com/alaportofficial/" class="icon icon-facebook"><span>Facebook</span></a></li>
+        <li><a href="#" class="icon icon-dribbble"><span>Pinterest</span></a></li>
+        <li><a href="#" class="icon icon-tumblr"><span>Google+</span></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+    {% endfor %}
+{% endblock %}

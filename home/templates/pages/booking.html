@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>Booking System</title>
+
+    {% load staticfiles %}
+	<link rel="stylesheet" href="{% static 'pages/css/booking.css' %}">
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+    crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+  <link href="{% static 'pages/css/booking.css' %}" rel="stylesheet" type="text/css" media="all" />
+  <link href="{% static 'pages/css/fonts.css' %}" rel="stylesheet" type="text/css" media="all" />
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+ <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="{% url 'home:home' %}">AirPort</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home:home' %}">Главная <span class="sr-only">(current)</span></a>
+      </li>
+
+               <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home:onas' %}">О нас</a>
+
+        <li class="nav-item active">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button class="search-box-button">❓</button>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="#">Какие есть рейсы?</a>
+        <a class="dropdown-item" href="{% url 'home:vylety' %}">Как узнать прилет?</a>
+        <a class="dropdown-item" href="{% url 'home:prilet' %}">Когда отлет самолетов?</a>
+        <a class="dropdown-item" href="{% url 'home:contact' %}">Как свзяаться с в аэропортом?</a>
+        <a class="dropdown-item" href="https://en.wikipedia.org/wiki/Almaty">Где находиться Алматы?</a>
+        <a class="dropdown-item" href="{% url 'home:forpassengers' %}">Какие есть Алматинские авиа-туры?</a>
+        <a class="dropdown-item" href="{% url 'home:info' %}">Нужна ли регистрация для просмотра рейсов?</a>
+        <a class="dropdown-item" href="{% url 'home:info' %}">Как посмотреть мои полеты?</a>
+        <a class="dropdown-item" href="{% url 'home:info' %}">Как сохранить выбранный рейс?</a>
+        <a class="dropdown-item" href="{% url 'home:info' %}">Что еще я могу узнать?</a>
+        </div>
+        </li>
+      <li class="nav-item active">
+        <a class="nav-link disabled" href="{% url 'home:forpassengers' %}" tabindex="-1" aria-disabled="true">Для пассажиров</a>
+        <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home:booking' %}">Покупка Билетов</a>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home:contact' %}">Контакты</a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        MEНЮ
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+         <a class="dropdown-item" href="{% url 'home:prilet' %}">ПРИЛЕТ</a>
+          <a class="dropdown-item" href="{% url 'home:vylety' %}">ВЫЛЕТ</a>
+          <a class="dropdown-item" href="{% url 'home:info' %}">Info-центр</a>
+            <a class="dropdown-item" href="{% url 'home:register' %}">Мои полеты</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{% url 'home:shedule'%}">РАСПИСАНИЕ</a>
+        </div>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0" action="{% url 'home:search' %}" method='POST'>
+      {% csrf_token %}
+      <input class="form-control mr-sm-2" type="search" name="search_text" placeholder="Search" aria-label="Search">
+      <input class="search-box-button" type="submit">&#128269;</input>
+    </form>
+  </div>
+</nav>
+ <div id="header-wrapper">
+        <div id="header" class="cоntainer">
+          <div id="logo">
+            <h1><a href="#"></a></h1>
+           
+          </div>
+          <div id="menu">
+          </div>
+        </div>
+      </div>
+
+ <div class="booking-form-box">
+  <div class="radio-btn">
+  <input type="radio" class ="btn" name="check" checked="checked">
+  <span>Roundtrip</span>
+  <input type="radio" class ="btn" name="check" checked="checked">
+  <span>One Way</span>
+  <input type="radio" class ="btn" name="check" checked="checked">
+  <span>Multi-City</span>
+</div>
+
+<div class="booking-form">
+  <form action="{% url 'home:show_flights' %}" method="POST">
+      {% csrf_token %}
+<label>Flying From</label>
+<input type="text" name="from_city" class="form-control" placeholder="City or Airport">
+<label>Flying To</label>
+<input type="text" name="to_city"class="form-control" placeholder="City or Airport">
+
+<div class ="input-grp">
+<label>Departing</label>
+<input type="date" name="departure_date"class="form-control select-date">
+</div>
+
+<div class="input-grp">
+<label>Returing</label>
+<input type="date" name="returning_date"class="form-control select-date">
+</div>
+
+<div class="input-grp">
+<label>Adults</label>
+<input type="number" name="number_of_adults"class="form-control" value="1">
+</div>
+
+<div class="input-grp">
+<label>children</label>
+<input type="number" name="number_of_children"class="form-control" value="0">
+</div>
+
+
+<div class="input-grp">
+<label>Travel</label>
+<select class="custom-select" name="econom_or_business">
+  <option value="1">Economy Class</option>
+  <option value="2">Business Class</option>
+</select>
+</div>
+
+
+<div class="input-grp">
+	<button type="submit" class="btn btn-primary flight">Show Flights</button>
+</div>
+</form>
+
+<header class="title">
+              <h2>Информация</h2>
+              <span class="byline">Больше информаций о нас здесь:)</span>
+            </header>
+            <ul class="contact">
+              <li><a href="#" class="icon icon-twitter"><span>Twitter</span></a></li>
+              <li><a href="#" class="icon icon-facebook"><span>Facebook</span></a></li>
+              <li><a href="#" class="icon icon-dribbble"><span>Pinterest</span></a></li>
+              <li><a href="#" class="icon icon-tumblr"><span>Google+</span></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+
+</body>
+</html>
