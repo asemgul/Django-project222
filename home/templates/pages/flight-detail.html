@@ -13,7 +13,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    {% load staticfiles %}
+    {% load static %}
   <link href="{% static 'pages/css/default.css' %}" rel="stylesheet" type="text/css" media="all" />
   <link href="{% static 'pages/css/fonts.css' %}"  rel="stylesheet" type="text/css" media="all" />
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -21,7 +21,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
     crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
+          crossorigin="anonymous"></script> </head>
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -33,7 +33,7 @@
    <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="{% url 'home:home'c%}">Главная <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{% url 'home:home' %}">Главная <span class="sr-only">(current)</span></a>
       </li>
 
           <li class="nav-item active">
@@ -58,7 +58,7 @@
         </li>
 
       <li class="nav-item active">
-        <a class="nav-link disabled" href="{% url 'home:forpassengers' %}" tabindex="-1" aria-disabled="true">Для пассажиров</a>
+        <a class="nav-link active" href="{% url 'home:forpassengers' %}" tabindex="-1" aria-disabled="true">Для пассажиров</a>
         <li class="nav-item active">
         <a class="nav-link" href="{% url 'home:booking' %}">Покупка Билетов</a>
       <li class="nav-item active">
@@ -71,11 +71,19 @@
          <a class="dropdown-item" href="{% url 'home:prilet' %}">ПРИЛЕТ</a>
           <a class="dropdown-item" href="{% url 'home:vylety' %}">ВЫЛЕТ</a>
           <a class="dropdown-item" href="{% url 'home:info' %}">Info-центр</a>
-          <a class="dropdown-item" href="{% url 'home:register' %}">Мои полеты</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">РАСПИСАНИЕ</a>
+          <a class="dropdown-item" href="{% url 'home:schedule' %}">РАСПИСАНИЕ</a>
         </div>
       </li>
+      <li class="nav-item active">
+    {% if not request.user.is_authenticated %}
+        <a class="nav-link" href="{% url 'home:register' %}">Мои полеты</a>
+      {% else %}
+        <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home:profile' %}">Мой профиль</a>
+        <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home:home' %}">Выйти</a>
+      {% endif %}
     </ul>
     <form class="form-inline my-2 my-lg-0" action="{% url 'home:search' %}" method='POST'>
       {% csrf_token %}
@@ -84,7 +92,8 @@
     </form>
   </div>
 </nav>
-  <body>
+
+
     <h3>{{ flight.from_c }} to {{ flight.to_c }}</h3>
     <ul>
     <li>{{ flight.date }}</li>
@@ -129,5 +138,6 @@
     </div>
   </div>
 </div>
-    </body>
+ </body>
+
 {% endblock %}

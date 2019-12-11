@@ -1,6 +1,6 @@
 body{
 background-attachment: fixed;
-background: src: url('../images/fg.jpg');
+background: url('/static/pages/images/fff.jpg');
 }
 .search-box-wrapper {
     display: inline-flex;
@@ -131,3 +131,97 @@ input::placeholder{
 	color: #FFE4E1 !important;
 	transition: 0.5s;
 }
+
+
+	
+
+#wrapper4
+	{
+		overflow: hidden;
+		padding: 8em 0em;
+		background: url("static/pages/images/ob4.jpg");
+	}
+
+#footer
+	{
+		text-align: center;
+	}
+
+	
+	#footer .title span
+	{
+		color: rgba(255,255,255,0.4);
+	}
+.container
+	{
+		margin: 0px auto;
+		width: 1200px;
+	}
+.container{
+    margin-top: 8%;
+    margin-left: 8%;
+}
+
+.card:hover{
+    -webkit-box-shadow: -1px 9px 40px -12px rgba(0,0,0,0.75);
+    -moz-box-shadow: -1px 9px 40px -12px rgba(0,0,0,0.75);
+    box-shadow: 10px 9px 40px -12px rgba(0, 0, 0, 0.75);
+}
+
+ul.contact
+	{
+		margin: 0;
+		padding: 2em 0em 0em 0em;
+		list-style: none;
+	}
+	
+	ul.contact li
+	{
+		display: inline-block;
+		padding: 0em 0.30em;
+		font-size: 1.2em;
+	}
+	
+	ul.contact li span
+	{
+		display: none;
+		margin: 0;
+		padding: 0;
+	}
+	
+	ul.contact li a
+	{
+		color: #FFF;
+	}
+	
+	ul.contact li a:before
+	{
+		display: inline-block;
+		background: #333333;
+		width: 60px;
+		height: 60px;
+		line-height: 60px;
+		text-align: center;
+		color: #FFFFFF;
+	}
+	
+	.title
+	{
+		margin-bottom: 3em;
+	}
+	
+	.title h2
+	{
+		font-size: 2.8em;
+		color: rgba(255,255,255,0.9);
+	}
+	
+	.title .byline
+	{
+		letter-spacing: 0.15em;
+		text-transform: uppercase;
+		font-weight: 400;
+		font-size: 1.1em;
+		color: #6F6F6F;
+	}
+	

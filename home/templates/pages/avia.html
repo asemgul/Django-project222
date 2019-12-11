@@ -1,0 +1,222 @@
+<!DOCTYPE>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title></title>
+
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <link rel="stylesheet" href="search-box.css">
+  <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+    crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+  {% load static%}
+  <link href="{% static 'pages/css/default.css' %}" rel="stylesheet" type="text/css" media="all" />
+  <link href="{% static 'pages/css/fonts.css' %}"rel="stylesheet" type="text/css" media="all" />
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+  <!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="{% url 'home:home' %}">AirPort</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home:home' %}">Главная <span class="sr-only">(current)</span></a>
+      </li>
+              <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home:onas' %}">О нас</a>
+
+        <li class="nav-item active">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button class="search-box-button">❓</button>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="#">Какие есть рейсы?</a>
+        <a class="dropdown-item" href="{% url 'home:vylety' %}">Как узнать прилет?</a>
+        <a class="dropdown-item" href="{% url 'home:prilet' %}">Когда отлет самолетов?</a>
+        <a class="dropdown-item" href="{% url 'home:contact' %}">Как свзяаться с в аэропортом?</a>
+        <a class="dropdown-item" href="https://en.wikipedia.org/wiki/Almaty">Где находиться Алматы?</a>
+        <a class="dropdown-item" href="{% url 'home:forpassengers' %}">Какие есть Алматинские авиа-туры?</a>
+        <a class="dropdown-item" href="{% url 'home:info' %}">Нужна ли регистрация для просмотра рейсов?</a>
+        <a class="dropdown-item" href="{% url 'home:info' %}">Как посмотреть мои полеты?</a>
+        <a class="dropdown-item" href="{% url 'home:info' %}">Как сохранить выбранный рейс?</a>
+        <a class="dropdown-item" href="{% url 'home:info' %}">Что еще я могу узнать?</a>
+        </div>
+        </li>
+      <li class="nav-item active">
+        <a class="nav-link active" href="{% url 'home:forpassengers' %}" tabindex="-1" aria-disabled="true">Для пассажиров</a>
+        <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home:booking' %}">Покупка Билетов</a>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home:contact' %}">Контакты</a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        MEНЮ
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+         <a class="dropdown-item" href="{% url 'home:prilet' %}">ПРИЛЕТ</a>
+          <a class="dropdown-item" href="{% url 'home:vylety' %}">ВЫЛЕТ</a>
+          <a class="dropdown-item" href="{% url 'home:info' %}">Info-центр</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{% url 'home:schedule'%}">РАСПИСАНИЕ</a>
+        </div>
+      </li>
+      <li class="nav-item active">
+     {% if not request.user.is_authenticated %}
+        <a class="nav-link" href="{% url 'home:register' %}">Мои полеты</a>
+      {% else %}
+        <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home:profile' %}">Мой профиль</a>
+        <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home:home' %}">Выйти</a>
+      {% endif %}
+    </ul>
+    <form class="form-inline my-2 my-lg-0" action="{% url 'home:search' %}" method='POST'>
+      {% csrf_token %}
+      <input class="form-control mr-sm-2" type="search" name="search_text" placeholder="Search" aria-label="Search">
+      <input class="search-box-button" type="submit">&#128269;</input>
+    </form>
+  </div>
+</nav>
+
+
+ <div id="header-wrapper">
+        <div id="header" class="cоntainer">
+          <div id="logo">
+            <h1><a href="#"></a></h1>
+            <h1><a href="{% url 'home:avia_tour' %}">АВИA ТУРЫ</a></h1>
+            <span><a href="http://templated.co" rel="nofollow"></a></span>
+          </div>
+          <div id="menu">
+
+
+          </div>
+        </div>
+
+      </div>
+        <div  class="food-main-bg">
+            <div class="container">
+                <div class="row">
+                              <div class="col-sm-12">
+                                                    <p><strong>Агентство</strong> АО &laquo;Международный аэропорт Алматы&raquo; предоставляет возможность <strong>оформления билетов</strong> <u>в режиме </u><u>On</u><u>-</u><u>Line</u> с оплатой перевозок с помощью пластиковой банковской карты</p>
+
+<p><a class="btn btn-more kupit-bilet" href="{% url 'home:booking' %}" style="width:170px;">КУПИТЬ БИЛЕТ</a> &nbsp;</p>
+
+<p><strong>Агентство</strong> осуществляет <strong>продажу билетов </strong><u>в помещении Городского аэровокзала</u> и <u>в Терминале аэропорта Алматы</u>:</p>
+
+<p><strong>&laquo;Городской Аэровокзал&raquo;, ул.Жибек Жолы, 111</strong>&nbsp;<br />
+<u>офис <strong>№ 2</strong></u>&nbsp; (0800-2000, ежедневно)</p>
+
+<ul style="list-style-type:square;">
+  <li>&nbsp;+7&nbsp;(727)&nbsp;279-52-72, +7&nbsp;(727)&nbsp;258-41-55, +7 (727) 258-41-88,</li>
+  <li>+ 7 777&nbsp;009-97-64</li>
+</ul>
+
+<p><strong>Аэропорт Алматы, ул.Майлина, 2&nbsp;</strong><br />
+Терминал аэропорта Алматы:</p>
+
+<ul style="list-style-type:square;">
+  <li>касса №1 (1 этаж), <strong> </strong>&nbsp;+7&nbsp;(727)&nbsp;270-30-61, +7&nbsp;727&nbsp;270-35-55,</li>
+  <li>+7 777&nbsp;009-19-86 (круглосуточно) ;</li>
+  <li>касса №3 (2 этаж), <strong> </strong>&nbsp;+7&nbsp;(727)&nbsp;270-34-62, +7&nbsp;777&nbsp;009-90-53 (круглосуточно);</li>
+  <li>офис №6 (2 этаж), <strong> </strong>&nbsp;+7&nbsp;(727)&nbsp;270-32-27, +7&nbsp;727&nbsp;270-32-28</li>
+</ul>
+
+<p>(0800-2000, ежедневно)</p>
+
+<p>С 2006 года Агентство имеет <strong>аккредитацию </strong><strong>IATA</strong> (International Air Transport Association/ Международная ассоциация воздушного транспорта) с кодом <strong>65-3 2040 4</strong>.</p>
+
+<p><a href="/backend/web/images/menu/2019.jpg"><img alt="" src="/backend/web/images/menu/24a1e2379110169.png" style="height: 290px; width: 400px;" /></a></p>
+
+<p>&nbsp;</p>
+
+<table border="0" cellpadding="0" cellspacing="0" style="width:100.0%;" width="100%">
+  <tbody>
+    <tr>
+      <td>
+      <p>Компаниям и предприятиям, часто пользующимся железнодорожным и авиатранспортом, Агентство предлагает <strong>заключение корпоративного договора</strong> на оказание услуг по продаже железнодорожных и авиаперевозок.</p>
+
+      <p>Данный договор включает следующие условия:</p>
+
+      <ul>
+        <li>оплата за наличный и безналичный расчет, оплата по кредитным картам;</li>
+        <li>приём заявок на билеты по электронной почте, WhatsApp, либо по телефону;</li>
+        <li>количество приобретаемых авиабилетов не ограничено.</li>
+      </ul>
+
+      <p>По вопросам заключения корпоративного договора&nbsp;обращаться по телефонам:</p>
+
+      <ul>
+        <li><strong>&nbsp;+7&nbsp;(727) 388-84-39,</strong>&nbsp;<strong>+7 (727) 258-41-98</strong></li>
+      </ul>
+
+      <p>На базе Агентства действует <strong>Методический Кабинет</strong>, в котором производится &laquo;Повышение квалификации агентов по бронированию и продаже перевозок&raquo; для физических и юридических лиц на договорной основе с последующей выдачей сертификата АО &laquo;Международный аэропорт Алматы&raquo;.</p>
+
+      <p>Предусмотрена гибкая система тарифов на услуги проведения занятий.</p>
+
+      <p>Методический Кабинет Агентства по продаже авиаперевозок находится в гостинице аэропорта &laquo;Аксункар&raquo;, кабинет №334.</p>
+
+      <p>По вопросам обучения обращаться по телефону:</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <ul>
+        <li><strong>&nbsp;+7 (727) 270-31-62</strong></li>
+      </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0" style="width:100.0%;" width="100%">
+  <tbody>
+    <tr>
+      <td>
+      <p>&nbsp;</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+                                            </div>
+                                              </div>
+            </div>
+        </div>
+      <div id="wrapper4">
+        <div id="footer" class="container">
+          <div>
+            <header class="title">
+              <h2>Информация</h2>
+              <span class="byline">Больше информаций о нас здесь:)</span>
+            </header>
+            <ul class="contact">
+              <li><a href="#" class="icon icon-twitter"><span>Twitter</span></a></li>
+              <li><a href="#" class="icon icon-facebook"><span>Facebook</span></a></li>
+              <li><a href="#" class="icon icon-dribbble"><span>Pinterest</span></a></li>
+              <li><a href="#" class="icon icon-tumblr"><span>Google+</span></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+</body>
+
+</html>

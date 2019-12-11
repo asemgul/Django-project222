@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE>
+<html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=d, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Show_flights</title>
-    <meta name="keywords" content="" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title></title>
+
+  <meta name="keywords" content="" />
   <meta name="description" content="" />
   <link rel="stylesheet" href="search-box.css">
   <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
@@ -14,8 +12,9 @@
     crossorigin="anonymous">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     {% load static %}
-  <link href="{% static 'pages/css/onas.css' %}" rel="stylesheet" type="text/css" media="all" />
+  <link href="{% static 'pages/css/default.css' %}" rel="stylesheet" type="text/css" media="all" />
   <link href="{% static 'pages/css/fonts.css' %}" rel="stylesheet" type="text/css" media="all" />
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
@@ -24,20 +23,21 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
 
-<body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="{% url 'home:home'%}">AirPort</a>
+  <!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="{% url 'home:home' %}">AirPort</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-     <li class="nav-item active">
+      <li class="nav-item active">
         <a class="nav-link" href="{% url 'home:home' %}">Главная <span class="sr-only">(current)</span></a>
       </li>
-
-               <li class="nav-item active">
+     <li class="nav-item active">
         <a class="nav-link" href="{% url 'home:onas' %}">О нас</a>
 
         <li class="nav-item active">
@@ -58,7 +58,7 @@
         </div>
         </li>
       <li class="nav-item active">
-        <a class="nav-link disabled" href="{% url 'home:forpassengers' %}" tabindex="-1" aria-disabled="true">Для пассажиров</a>
+        <a class="nav-link active" href="{% url 'home:forpassengers' %}" tabindex="-1" aria-disabled="true">Для пассажиров</a>
         <li class="nav-item active">
         <a class="nav-link" href="{% url 'home:booking' %}">Покупка Билетов</a>
       <li class="nav-item active">
@@ -71,11 +71,19 @@
          <a class="dropdown-item" href="{% url 'home:prilet' %}">ПРИЛЕТ</a>
           <a class="dropdown-item" href="{% url 'home:vylety' %}">ВЫЛЕТ</a>
           <a class="dropdown-item" href="{% url 'home:info' %}">Info-центр</a>
-            <a class="dropdown-item" href="{% url 'home:register' %}">Мои полеты</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="{% url 'home:shedule'%}">РАСПИСАНИЕ</a>
+          <a class="dropdown-item" href="{% url 'home:schedule'%}">РАСПИСАНИЕ</a>
         </div>
       </li>
+     <li class="nav-item active">
+      {% if not request.user.is_authenticated %}
+        <a class="nav-link" href="{% url 'home:register' %}">Мои полеты</a>
+      {% else %}
+        <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home:profile' %}">Мой профиль</a>
+        <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home:home' %}">Выйти</a>
+      {% endif %}
     </ul>
     <form class="form-inline my-2 my-lg-0" action="{% url 'home:search' %}" method='POST'>
       {% csrf_token %}
@@ -84,8 +92,22 @@
     </form>
   </div>
 </nav>
+
 </head>
 <body>
+<div id="header-wrapper">
+	<div id="header" class="container">
+		<div id="logo">
+			<h1><a href="#"></a></h1>
+			<h1><a href="{% url 'home:home' %}">Добро пожаловать в аэропорт Алматы</a></h1>
+			<span><a href="{% url 'home:home' %}" rel="nofollow">Airprot</a></span> </div>
+		<div id="menu">
+
+		</div>
+	</div>
+</div>
+
+
     <H2>Departure date: {{ departure_date }}</H2>
     {% if travel_type == '1' %}
     <H3>Travel Type: Economy</H3>
@@ -102,8 +124,8 @@
             <H4>Start: {{flight.fligth_start_time}}</H4>
             <H4>End: {{flight.flight_end_time}}</H4>
             <H4>Duration: {{flight.flight_duration}} minutes</H4>
-            <H4>Econom: {{flight.flight_price_econom}} $</H4>
-            <H4>Business: {{flight.flight_price_business}} $</H4>
+            <H4>Econom: {{flight.flight_price_econom}} ТГ</H4>
+            <H4>Business: {{flight.flight_price_business}} ТГ</H4>
             <form action="{% url 'home:book_flight' flight.id %}" method='POST'>
                 {% csrf_token %}
                 <button type='submit'>Buy</button>
@@ -113,6 +135,9 @@
             <p>--------------------------------------------------------------------------</p>
         {% endfor %}
     {% endif %}
+
+
+
 <div id="wrapper1">
   <div id="welcome" class="container">
     <div class="title">
@@ -138,6 +163,7 @@
     </div>
   </div>
 </div>
-
+</div>
 </body>
+
 </html>

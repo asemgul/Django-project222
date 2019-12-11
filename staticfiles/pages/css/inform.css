@@ -505,7 +505,7 @@ button span:before, button span:after
 	#header-wrapper
 	{
 		padding: 5em 0em;
-		background: #A9A9A9 url("images/suk.png") repeat;
+		background: #A9A9A9 url('../images/suk.png') repeat;
 		image-rendering: optimizeSpeed;
 	}
 

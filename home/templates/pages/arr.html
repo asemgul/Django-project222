@@ -1,0 +1,282 @@
+<!DOCTYPE>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title></title>
+
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <link rel="stylesheet" href="search-box.css">
+  <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+    crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+ {% load static%}
+  <link href="{% static 'pages/css/default.css' %}" rel="stylesheet" type="text/css" media="all" />
+  <link href="{% static 'pages/css/fonts.css' %}"rel="stylesheet" type="text/css" media="all" />
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+  <!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="{% url 'home:home' %}">AirPort</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home:home' %}">Главная <span class="sr-only">(current)</span></a>
+      </li>
+              <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home:onas' %}">О нас</a>
+
+        <li class="nav-item active">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button class="search-box-button">❓</button>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="#">Какие есть рейсы?</a>
+        <a class="dropdown-item" href="{% url 'home:vylety' %}">Как узнать прилет?</a>
+        <a class="dropdown-item" href="{% url 'home:prilet' %}">Когда отлет самолетов?</a>
+        <a class="dropdown-item" href="{% url 'home:contact' %}">Как свзяаться с в аэропортом?</a>
+        <a class="dropdown-item" href="https://en.wikipedia.org/wiki/Almaty">Где находиться Алматы?</a>
+        <a class="dropdown-item" href="{% url 'home:forpassengers' %}">Какие есть Алматинские авиа-туры?</a>
+        <a class="dropdown-item" href="{% url 'home:info' %}">Нужна ли регистрация для просмотра рейсов?</a>
+        <a class="dropdown-item" href="{% url 'home:info' %}">Как посмотреть мои полеты?</a>
+        <a class="dropdown-item" href="{% url 'home:info' %}">Как сохранить выбранный рейс?</a>
+        <a class="dropdown-item" href="{% url 'home:info' %}">Что еще я могу узнать?</a>
+        </div>
+        </li>
+      <li class="nav-item active">
+        <a class="nav-link active" href="{% url 'home:forpassengers' %}" tabindex="-1" aria-disabled="true">Для пассажиров</a>
+        <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home:booking' %}">Покупка Билетов</a>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home:contact' %}">Контакты</a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        MEНЮ
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+         <a class="dropdown-item" href="{% url 'home:prilet' %}">ПРИЛЕТ</a>
+          <a class="dropdown-item" href="{% url 'home:vylety' %}">ВЫЛЕТ</a>
+          <a class="dropdown-item" href="{% url 'home:info' %}">Info-центр</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{% url 'home:schedule'%}">РАСПИСАНИЕ</a>
+        </div>
+      </li>
+      <li class="nav-item active">
+     {% if not request.user.is_authenticated %}
+        <a class="nav-link" href="{% url 'home:register' %}">Мои полеты</a>
+      {% else %}
+       <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home:profile' %}">Мой профиль</a>
+        <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home:home' %}">Выйти</a>
+      {% endif %}
+    </ul>
+    <form class="form-inline my-2 my-lg-0" action="{% url 'home:search' %}" method='POST'>
+      {% csrf_token %}
+      <input class="form-control mr-sm-2" type="search" name="search_text" placeholder="Search" aria-label="Search">
+      <input class="search-box-button" type="submit">&#128269;</input>
+    </form>
+  </div>
+</nav>
+
+
+ <div id="header-wrapper">
+        <div id="header" class="cоntainer">
+          <div id="logo">
+            <h1><a href="#"></a></h1>
+            <h1><a href="{% url 'home:arrived' %}">ПРИБЫВШИМ</a></h1>
+            <span><a href="http://templated.co" rel="nofollow"></a></span>
+          </div>
+          <div id="menu">
+
+
+          </div>
+        </div>
+
+      </div>
+<div class="fly-away-bg">
+            <div class="container">
+                <div class="col-sm-12">
+                                            <div class="collapse-block">
+                            <div class="collapse-item" data-toggle="collapse" href="#collapse0" aria-expanded="false" aria-controls="collapse0">
+                                <p>Багаж <img src="{% static 'pages/images/info-icon.png' %}" class="hidden" alt=""></p>
+                                <div class="collapse-arrow">
+                                    <img src="{% static 'pages/images/collapse-arrow.png' %}" alt="">
+                                </div>
+                            </div>
+                            <div class="collapse collapse-area" id="collapse0">
+                                <div class="purchase-bottom-text no-space">
+                                    <p><span style="color: rgb(0, 0, 0); font-family: Roboto, RobotoDraft, Helvetica, Arial, sans-serif; font-size: 15px; text-align: center; white-space: pre-wrap;">Розыск багажа. Телефоны: 2703104, 2703093.</span></p>
+                                </div>
+                                <img src="/backend/web/images/pribivshim/Array"  class="img-fluid" alt="">
+                            </div>
+                        </div>
+                                            <div class="collapse-block">
+                            <div class="collapse-item" data-toggle="collapse" href="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                                <p>Для пассажиров с детьми <img src="{% static 'pages/images/info-icon.png' %}" class="hidden" alt=""></p>
+                                <div class="collapse-arrow">
+                                    <img src="{% static 'pages/images/collapse-arrow.png' %}" alt="">
+                                </div>
+                            </div>
+                            <div class="collapse collapse-area" id="collapse1">
+                                <div class="purchase-bottom-text no-space">
+                                    <p style="text-align: center;">Сервис в пассажирском терминале</p>
+
+<p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 20px; font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 15px; line-height: normal; font-family: &quot;Roboto Light&quot;, sans-serif; color: rgb(12, 40, 51); text-align: center;">В пассажирском терминале для авиапассажиров предоставляются следующие услуги:</p>
+
+<ul style="box-sizing: border-box; margin-top: 0px; margin-bottom: 1rem; color: rgb(33, 37, 41); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;">
+  <li style="box-sizing: border-box;">
+  <p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 20px; font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 15px; line-height: normal; font-family: &quot;Roboto Light&quot;, sans-serif; color: rgb(12, 40, 51);">Справочное бюро</p>
+  </li>
+  <li style="box-sizing: border-box;">
+  <p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 20px; font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 15px; line-height: normal; font-family: &quot;Roboto Light&quot;, sans-serif; color: rgb(12, 40, 51);">Информационные табло вылетов, прилетов, ...</p>
+  </li>
+  <li style="box-sizing: border-box;">
+  <p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 20px; font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 15px; line-height: normal; font-family: &quot;Roboto Light&quot;, sans-serif; color: rgb(12, 40, 51);">Регистрация пассажиров на международные авиарейсы</p>
+  </li>
+  <li style="box-sizing: border-box;">
+  <p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 20px; font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 15px; line-height: normal; font-family: &quot;Roboto Light&quot;, sans-serif; color: rgb(12, 40, 51);">Регистрация пассажиров на внутренние авиарейсы</p>
+  </li>
+  <li style="box-sizing: border-box;">
+  <p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 20px; font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 15px; line-height: normal; font-family: &quot;Roboto Light&quot;, sans-serif; color: rgb(12, 40, 51);">Консульский отдел</p>
+  </li>
+  <li style="box-sizing: border-box;">
+  <p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 20px; font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 15px; line-height: normal; font-family: &quot;Roboto Light&quot;, sans-serif; color: rgb(12, 40, 51);">Кафе, бары, Fast food</p>
+  </li>
+  <li style="box-sizing: border-box;">
+  <p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 20px; font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 15px; line-height: normal; font-family: &quot;Roboto Light&quot;, sans-serif; color: rgb(12, 40, 51);">Камера хранения</p>
+  </li>
+  <li style="box-sizing: border-box;">
+  <p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 20px; font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 15px; line-height: normal; font-family: &quot;Roboto Light&quot;, sans-serif; color: rgb(12, 40, 51);">Тележки для перевоза багажа и ручной клади</p>
+  </li>
+  <li style="box-sizing: border-box;">
+  <p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 20px; font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 15px; line-height: normal; font-family: &quot;Roboto Light&quot;, sans-serif; color: rgb(12, 40, 51);">Обмен валют</p>
+  </li>
+  <li style="box-sizing: border-box;">
+  <p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 20px; font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 15px; line-height: normal; font-family: &quot;Roboto Light&quot;, sans-serif; color: rgb(12, 40, 51);"><span style="box-sizing: border-box; font-weight: bolder;">Комната матери и ребенка</span></p>
+  </li>
+  <li style="box-sizing: border-box;">
+  <p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 20px; font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 15px; line-height: normal; font-family: &quot;Roboto Light&quot;, sans-serif; color: rgb(12, 40, 51);">Медпункт</p>
+  </li>
+  <li style="box-sizing: border-box;">
+  <p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 20px; font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 15px; line-height: normal; font-family: &quot;Roboto Light&quot;, sans-serif; color: rgb(12, 40, 51);">Поиск потерянного багажа</p>
+  </li>
+  <li style="box-sizing: border-box;">
+  <p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 20px; font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 15px; line-height: normal; font-family: &quot;Roboto Light&quot;, sans-serif; color: rgb(12, 40, 51);">Комната молитв</p>
+  </li>
+  <li style="box-sizing: border-box;">
+  <p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 20px; font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 15px; line-height: normal; font-family: &quot;Roboto Light&quot;, sans-serif; color: rgb(12, 40, 51);">Упаковка багажа</p>
+  </li>
+  <li style="box-sizing: border-box;">
+  <p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 20px; font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 15px; line-height: normal; font-family: &quot;Roboto Light&quot;, sans-serif; color: rgb(12, 40, 51);">Кассы продажи авиаперевозок</p>
+  </li>
+  <li style="box-sizing: border-box;">
+  <p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 20px; font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 15px; line-height: normal; font-family: &quot;Roboto Light&quot;, sans-serif; color: rgb(12, 40, 51);">Магазины Дьюти фри, Французский дом, Сувениры, и др.</p>
+  </li>
+  <li style="box-sizing: border-box;">
+  <p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 20px; font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 15px; line-height: normal; font-family: &quot;Roboto Light&quot;, sans-serif; color: rgb(12, 40, 51);">Оплата парковки</p>
+  </li>
+  <li style="box-sizing: border-box;">
+  <p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 20px; font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 15px; line-height: normal; font-family: &quot;Roboto Light&quot;, sans-serif; color: rgb(12, 40, 51);">Киоски газет, журналов</p>
+  </li>
+  <li style="box-sizing: border-box;">
+  <p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 20px; font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 15px; line-height: normal; font-family: &quot;Roboto Light&quot;, sans-serif; color: rgb(12, 40, 51);">Казпочта</p>
+  </li>
+  <li style="box-sizing: border-box;">
+  <p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 20px; font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 15px; line-height: normal; font-family: &quot;Roboto Light&quot;, sans-serif; color: rgb(12, 40, 51);">Банкоматы</p>
+  </li>
+  <li style="box-sizing: border-box;">
+  <p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 20px; font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 15px; line-height: normal; font-family: &quot;Roboto Light&quot;, sans-serif; color: rgb(12, 40, 51);">Телефон-автоматы</p>
+  </li>
+  <li style="box-sizing: border-box;">
+  <p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 20px; font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 15px; line-height: normal; font-family: &quot;Roboto Light&quot;, sans-serif; color: rgb(12, 40, 51);">Интернет</p>
+  </li>
+  <li style="box-sizing: border-box;">
+  <p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 20px; font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 15px; line-height: normal; font-family: &quot;Roboto Light&quot;, sans-serif; color: rgb(12, 40, 51);">Место встречи</p>
+  </li>
+  <li style="box-sizing: border-box;">
+  <p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 20px; font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 15px; line-height: normal; font-family: &quot;Roboto Light&quot;, sans-serif; color: rgb(12, 40, 51);">Wi-Fi</p>
+  </li>
+</ul>
+                                </div>
+                                <img src="/backend/web/images/pribivshim/Array"  class="img-fluid" alt="">
+                            </div>
+                        </div>
+                                            <div class="collapse-block">
+                            <div class="collapse-item" data-toggle="collapse" href="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                                <p>Паспортный пограничный контроль - режим работы и контактные данные <img src="{% static 'pages/images/info-icon.png' %}" class="hidden" alt=""></p>
+                                <div class="collapse-arrow">
+                                    <img src="{% static 'pages/images/collapse-arrow.png' %}" alt="">
+                                </div>
+                            </div>
+                            <div class="collapse collapse-area" id="collapse2">
+                                <div class="purchase-bottom-text no-space">
+                                    <p><span style="color: rgb(0, 0, 0); font-family: Roboto, RobotoDraft, Helvetica, Arial, sans-serif; white-space: pre-wrap;">3092 - Начальник отдела; 3105 - КНБ Разведка; 3485 - международный прилет ПТ; 3611 - Пограничники служба прилет; 3174 - Пограничники грузовой отдел; 3423 - Отдел погреничного контроля &quot;Жолаушылар; 3451, 3455, 3468, 3612, 3613, 3137, 3305</span></p>
+                                </div>
+                                <img src="/backend/web/images/pribivshim/Array"  class="img-fluid" alt="">
+                            </div>
+                        </div>
+                                            <div class="collapse-block">
+                            <div class="collapse-item" data-toggle="collapse" href="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                                <p>Для людей с ограниченными возможностями <img src="{% static 'pages/images/info-icon.png' %}" class="hidden" alt=""></p>
+                                <div class="collapse-arrow">
+                                    <img src="{% static 'pages/images/collapse-arrow.png' %}" alt="">
+                                </div>
+                            </div>
+                            <div class="collapse collapse-area" id="collapse3">
+                                <div class="purchase-bottom-text no-space">
+                                    <p style="text-align: center;"><strong><span style="font-size:16px;">Аэропорт без барьеров пассажирам из числа инвалидов и других лиц с ограничениями жизнедеятельности</span></strong></p>
+
+<p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 20px; font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 15px; line-height: normal; font-family: &quot;Roboto Light&quot;, sans-serif; color: rgb(12, 40, 51);">В аэропорту города Алматы имеется медицинская служба, которая работает в круглосуточном режиме&nbsp;<br style="box-sizing: border-box;" />
+В составе 5 врачей, 5 фельдшеров, 5 дежурных комнат матери и ребенка, 4 водителя скорой помощи.Оснащение: 6 инвалидных кресло &ndash; каталок, из них 4 узкие для доставки до посадочного места в воздушном судне, 2 машины скорой помощи (Мерседес-Бенс, Хюндай 2013 года выпуска).</p>
+
+<p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 20px; font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 15px; line-height: normal; font-family: &quot;Roboto Light&quot;, sans-serif; color: rgb(12, 40, 51);">Все услуги предоставляются бесплатно.</p>
+
+<p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 20px; font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 15px; line-height: normal; font-family: &quot;Roboto Light&quot;, sans-serif; color: rgb(12, 40, 51);">Контактные телефоны 2703-030, 2703-490<br style="box-sizing: border-box;" />
+Электронный адрес: medoffice@alaport.com<br style="box-sizing: border-box;" />
+Начальник медицинской службы аэропорта Алматы - Нуриманов Сагдат,<br style="box-sizing: border-box;" />
+мобильный: +7 777 009 97 94</p>
+                                </div>
+                                <img src="/backend/web/images/pribivshim/15619812361551853864invalid(1).jpg"  class="img-fluid" alt="">
+                            </div>
+                        </div>
+                                    </div>
+            </div>
+        </div>
+      <div id="wrapper4">
+        <div id="footer" class="container">
+          <div>
+            <header class="title">
+              <h2>Информация</h2>
+              <span class="byline">Больше информаций о нас здесь:)</span>
+            </header>
+            <ul class="contact">
+              <li><a href="#" class="icon icon-twitter"><span>Twitter</span></a></li>
+              <li><a href="#" class="icon icon-facebook"><span>Facebook</span></a></li>
+              <li><a href="#" class="icon icon-dribbble"><span>Pinterest</span></a></li>
+              <li><a href="#" class="icon icon-tumblr"><span>Google+</span></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+</body>
+
+</html>

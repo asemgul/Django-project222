@@ -4,6 +4,7 @@ from .models import *
 admin.site.register(User)
 admin.site.register(Comment)
 admin.site.register(Flightofusers)
+admin.site.register(Notification)
 
 
 # Register your models here.

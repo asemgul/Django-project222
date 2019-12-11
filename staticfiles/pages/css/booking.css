@@ -1,6 +1,6 @@
 body{
 background-attachment: fixed;
-background: url('../images/fg.jpg');
+background: src: url('../images/fg.jpg');
 }
 .search-box-wrapper {
     display: inline-flex;

@@ -174,9 +174,6 @@
 				}
 
 
-
-
-
 /*********************************************************************************/
 /* Image Style                                                                   */
 /*********************************************************************************/
@@ -339,7 +336,7 @@
 	#header-wrapper
 	{
 		padding: 5em 0em;
-		background: #A9A9A9 url('../images/suk.png') repeat;
+		background: #A9A9A9 url("/static/pages/images/suk.png") repeat;
 		image-rendering: optimizeSpeed;
 	}
 
@@ -463,7 +460,7 @@
 	{
 		overflow: hidden;
 		padding: 8em 0em;
-		background: #800505;
+		background: url("/static/pages/images/ob4.jpg");
 	}
 
 

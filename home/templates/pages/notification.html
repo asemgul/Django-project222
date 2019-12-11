@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    {% block content %}
+    <h2>{{notification.title}}</h2>
+    <p>{{notification.message}}</p>
+    <p><a href="../delete/{{notification.id}}/">Mark as Read</a></p>
+{% endblock %}
+
+</body>
+</html>

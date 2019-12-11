@@ -59,7 +59,7 @@
         </div>
         </li>
       <li class="nav-item active">
-        <a class="nav-link disabled" href="{% url 'home:forpassengers' %}" tabindex="-1" aria-disabled="true">Для пассажиров</a>
+        <a class="nav-link active" href="{% url 'home:forpassengers' %}" tabindex="-1" aria-disabled="true">Для пассажиров</a>
         <li class="nav-item active">
         <a class="nav-link" href="{% url 'home:booking' %}">Покупка Билетов</a>
       <li class="nav-item active">
@@ -72,11 +72,19 @@
          <a class="dropdown-item" href="{% url 'home:prilet' %}">ПРИЛЕТ</a>
           <a class="dropdown-item" href="{% url 'home:vylety' %}">ВЫЛЕТ</a>
           <a class="dropdown-item" href="{% url 'home:info' %}">Info-центр</a>
-          <a class="dropdown-item" href="{% url 'home:register' %}">Мои полеты</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="{% url 'home:shedule'%}">РАСПИСАНИЕ</a>
+          <a class="dropdown-item" href="{% url 'home:schedule'%}">РАСПИСАНИЕ</a>
         </div>
       </li>
+      <li class="nav-item active">
+     {% if not request.user.is_authenticated %}
+        <a class="nav-link" href="{% url 'home:register' %}">Мои полеты</a>
+      {% else %}
+       <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home:profile' %}">Мой профиль</a>
+        <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home:home' %}">Выйти</a>
+      {% endif %}
     </ul>
     <form class="form-inline my-2 my-lg-0" action="{% url 'home:search' %}" method='POST'>
       {% csrf_token %}
@@ -85,94 +93,44 @@
     </form>
   </div>
 </nav>
+
+
  <div id="header-wrapper">
-        <div id="header" class="cоntainer">
-          <div id="logo">
-            <h1><a href="#"></a></h1>
-            <h1><a href="{% url 'home:forpassengers' %}">Пассажирам</a></h1>
-            <span><a href="http://templated.co" rel="nofollow"></a></span>
-          </div>
-          <div id="menu">
+  <div id="header" class="container">
+    <div id="logo">
+      <h1><a href="#"></a></h1>
+      <h1><a href="{% url 'home:forpassengers' %}">Пассажирам</a></h1>
+      <span><a href="{% url 'home:home' %}" rel="nofollow">Airprot</a></span> </div>
+
+  </div>
+</div>
+      </div>
 
 
-          </div>
-        </div>
 
-      </div>
-<div class="container">
-        <div class="row">
-          <div class="col-4-lg">
-            <!— Bootstrap Card —>
-            <div class="col-4-lg ml-3">
-              <div class="card" style="width:18rem;">
-                <img src="{% static 'pages/images/ttt.png' %}" alt="Card Two" class="card-img-top">
-                <div class="card-body">
-                  <h5 class="card-title">ПРИБЫВШИМ</h5>
-                  <p class="card-text">
-                    информация о договорах<span></span>
-                  </p>
-                  <p>
-                    <button class="btn btn-primary btn-danger" type="button" data-toggle="collapse" data-target="#detail__1"
-                      aria-expanded="false" aria-controls="collapseExample">
-                      ПОДРОБНЕЕ
-                    </button>
-                  </p>
-                  <div class="collapse" id="detail__1">
-                    <div class="card card-body">
-                      ТАКСИ
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-4-lg ml-3">
-            <div class="card" style="width:18rem;">
-              <img src="{% static 'pages/images/plet.jpeg' %}" alt="Card Two" class="card-img-top">
-              <div class="card-body">
-                <h5 class="card-title">ВЫЛЕТАЮЩИМ</h5>
-                <p class="card-text">
-                  информация о питании на борту
-                </p>
-                <p>
-                  <button class="btn btn-primary btn-danger" type="button" data-toggle="collapse" data-target="#detail__2"
-                    aria-expanded="false" aria-controls="collapseExample">
-                    ПОДРОБНЕЕ
-                  </button>
-                </p>
-                <div class="collapse" id="detail__2">
-                  <div class="card card-body">
-                    ТАКСИ
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-4-lg ml-3">
-            <div class="card" style="width:18rem;">
-              <img src="{% static 'pages/images/plane2.jpg' %}" alt="Card Two" class="card-img-top">
-              <div class="card-body">
-                <h5 class="card-title">АВИА АГЕНТСТВО</h5>
-                <p class="card-text">
-                  информация о билетов
-                </p>
-                <p>
-                  <button class="btn btn-primary btn-danger" type="button" data-toggle="collapse" data-target="#detail__3"
-                    aria-expanded="false" aria-controls="collapseExample">
-                    ПОДРОБНЕЕ
-                  </button>
-                </p>
-                <div class="collapse" id="detail__3">
-                  <div class="card card-body">
-                    АВИА ТУРЫ
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      </div>
+
+      <div id="wrapper3">
+<div id="portfolio" class="container">
+<div class="title">
+<h2></h2>
+<span class="byline"></span> </div>
+<div class="column1">
+<div class="box"> <a href="{% url 'home:arrived' %}" ><img src="{% static 'pages/images/fondlya1.jpg'%}" alt="" class="image image-full" /></a>
+<h3>Прибывшим</h3>
+<a href="{% url 'home:arrived' %}" class="button button-small">Подробнее</a> </div>
+</div>
+<div class="column2">
+<div class="box"> <a href="{% url 'home:for_departure' %}"><img src="{% static 'pages/images/pok11.jpg'%}"alt="" class="image image-full" /></a>
+<h3>Вылетающим</h3>
+<a href="{% url 'home:for_departure' %}" class="button button-small">Подробнее</a> </div>
+</div>
+<div class="column3">
+<div class="box"> <a href="{% url 'home:avia_tour' %}"><img src="{% static 'pages/images/sssss1.jpg'%}" alt="" class="image image-full" /></a>
+<h3>Авиа туры</h3>
+<a href="{% url 'home:avia_tour' %}" class="button button-small">Подробнее</a> </div>
+</div>
+</div>
+</div>
 
       <script>
         $(document).ready(function () {
@@ -227,34 +185,8 @@
           </div>
         </div>
       </div>
-      <div id="wrapper2">
-        <div id="newsletter" class="container">
-          <div class="title">
-            <h2>Если у вас есть предложения, пишите:)</h2>
-            <span class="byline">Всегда рады вашему отзыву:)</span>
-          </div>
-          <div class="content">
-            <form method="post" action="#">
-              <div class="row half">
-                <div class="6u">
-                  <input type="text" class="text" name="name" placeholder="имя" />
-                </div>
-                <div class="6u">
-                  <input type="text" class="text" name="email" placeholder="Email" />
-                </div>
-              </div>
-              <div class="row half">
-                <div class="12u">
-                  <textarea name="message" placeholder="Сообщение"></textarea>
-                </div>
-              </div>
-              <div class="row">
-                <div class="12u"> <a href="#" class="button submit">Отправить сообщение</a> </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
+
+
       <div id="wrapper4">
         <div id="footer" class="container">
           <div>

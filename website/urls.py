@@ -21,6 +21,6 @@ from django.conf.urls import url
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-
     url('', include('home.urls')),
+    url('^accounts/', include('django.contrib.auth.urls'))
 ]

@@ -14,6 +14,9 @@ urlpatterns = [
 
     #forpassengers
     url(r'^forpassengers/', views.passenger, name='forpassengers'),
+    url(r'^arrived/', views.arrived, name='arrived'),
+    url(r'^for_departure/', views.for_departure, name='for_departure'),
+    url(r'^avia_tour/', views.avia_tour, name='avia_tour'),
 
     #departure
     url(r'^vylety/', views.departure, name='vylety'),
@@ -45,11 +48,22 @@ urlpatterns = [
     path("book_flight/<int:flight_id>", views.book_flight, name="book_flight"),
 
     #users stuff
-    path('registeruser/', views.registeruser, name="register"),
-
+    path('registeruser/', views.registeruser, name="registeruser"),
+    path('login/', LoginView.as_view(template_name='pages/login.html'), name='login'),
     #path('about/', views.about, name='users-about'),
-    path('login/', LoginView.as_view(), name='login'),
+    #path('login/', LoginView.as_view(), {'next_page' : 'project:view'}, name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('profile/', views.profile, name='profile'),
     path('flight/<int:pk>/', views.flight_detail, name='flight-detail'),
+
+    #users default page
+    url(r'^homeuser', views.homeuser, name='homeuser'),
+
+    #notes
+    url(r'^notification', views.notification, name='notification'),
+    url(r'^delete', views.delete_not, name='delete_not'),
+
+    #schedule
+    url(r'^schedule', views.schedule, name='schedule'),
 ]
+

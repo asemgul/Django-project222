@@ -23,8 +23,7 @@ SECRET_KEY = 'rpsb-&*fty7z-$1opsr13#l56rj96yy%lbxc76wjm2te*ukb%g'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', "127.0.0.0", "0.0.0.0", "127.0.0.1"]
 
 # Application definition
 
@@ -36,7 +35,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
 ]
+
+AUTH_USER_MODEL = "home.User"
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
@@ -56,7 +58,7 @@ ROOT_URLCONF = 'website.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'C:/Users/Camilla/website/home/templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'C:/Users/assemgul/Desktop/copy1/copy1/website/home/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -77,7 +79,7 @@ WSGI_APPLICATION = 'website.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'project_data.db'),
     }
 }
 
@@ -133,8 +135,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
 )
 
-BASE_DIR = 'C:/Users/Camilla/website/home/pages'
-
+BASE_DIR = 'C:/Users/assemgul/Desktop/copy1/copy1/website/home/pages'
+#BASE_DIR = 'C:/Users/Camilla/website/home/pages'
 
 # this is directory name where collectstatic files command will put your app level static files
 STATIC_ROOT = 'staticfiles'
@@ -146,7 +148,6 @@ STATICFILES_DIRS = (
 )
 
 STATIC_URL = '/static/'
-
 # Additional locations of static files
 STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
@@ -158,7 +159,28 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    # django.contrib.staticfiles.finders.DefaultStorageFinder',
+     # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
-AUTH_USER_MODEL = "home.user"
+LOGIN_URL = '/accounts/login'
+
+CRISPY_TEMPLATE_PACK = "bootwebsstrap4"
+
+LOGIN_REDIRECT_URL = 'profile'
+
+LOGOUT_REDIRECT_ULR = 'booking'
+
+DELETE_MESSAGE = 50
+
+MESSAGE_TAGS = {
+    DELETE_MESSAGE : 'deleted',
+}
+
+TEMPLATE_CONTEXT_PROCESSORS = {
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.request',
+    'django.contrib.messages.context_processors.messages',
+
+}
+
+

@@ -492,7 +492,7 @@ input::placeholder{
 	#header-wrapper
 	{
 		padding: 5em 0em;
-		background: #fff url("images/suk.png") repeat;
+		background: #fff url('../images/suk.png') repeat;
 		image-rendering: optimizeSpeed;
 	}
 
@@ -582,7 +582,7 @@ input::placeholder{
 #header-wrapper
 	{
 		padding: 5em 0em;
-		background: #A9A9A9 url("images/suk.png") repeat;
+		background: #A9A9A9 url('../images/suk.png') repeat;
 		image-rendering: optimizeSpeed;
 		
 	}
@@ -969,4 +969,9 @@ nav {
 	{
 		float: right;
 	}
-	
+
+	.deleted {
+	background-color: #880000;
+	border-color: #550000;
+	padding-left: lem;
+	}
